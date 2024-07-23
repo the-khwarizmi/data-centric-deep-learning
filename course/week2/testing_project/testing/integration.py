@@ -8,6 +8,7 @@ import pandas as pd
 from glob import glob
 from os.path import join
 from PIL import Image
+from pytorch_lightning import Trainer
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader
 
@@ -49,7 +50,7 @@ class MNISTIntegrationTest(BaseTest):
     loader = DataLoader(dataset, batch_size=batch_size)
     return loader
 
-  def test(self, trainer, system):
+  def test(self, trainer: Trainer, system):
     # ================================
     # FILL ME OUT
     #
@@ -64,7 +65,8 @@ class MNISTIntegrationTest(BaseTest):
     # Notes:
     # --
     # Nothing to return here
-    pass  # remove me
+    loader = self.get_dataloader()
+    trainer.test(system, dataloaders=loader)
     # ================================
 
 
