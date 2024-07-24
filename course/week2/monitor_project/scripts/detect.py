@@ -33,7 +33,6 @@ def main(args):
     te_dl = DataLoader(te_ds, batch_size=128, shuffle=False, num_workers=4)
     te_vocab = te_ds.get_vocab()
     te_probs = get_probs(system, te_dl)
-
     results = None
 
     # Compute monitored results.
