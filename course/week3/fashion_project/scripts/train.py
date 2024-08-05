@@ -56,6 +56,8 @@ class TrainFlow(FlowSpec):
         # data point maintains the same label.
         # TODO
         # ================================
+        transforms.RandomRotation(90),
+        transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
       ])
     else:
@@ -107,7 +109,7 @@ class TrainFlow(FlowSpec):
 
     # Load the best checkpoint and compute results using `self.trainer.test`
     self.trainer.test(system, dm, ckpt_path = 'best')
-    results = self.system.test_results
+    results = system.test_results
 
     # print results to command line
     pprint(results)
